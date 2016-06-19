@@ -1,5 +1,4 @@
-﻿// Test für Github 
-{
+﻿{
 var compFuerInhaltTausch = null;
 var daten = new Object();
 
@@ -40,8 +39,7 @@ function getItemByName(txtItemName){
 // Funktion txtErsetzen
 function txtErsetzen(kompName, layerName, txtString){
     
-    var myComp = getCompByName (kompName.toString());    
-    var layer = myComp.layer(layerName); 
+    var layer = kompName.layer(layerName); 
     var textProp = layer.property("Source Text");
     var textDocument = textProp.value;
     
@@ -51,12 +49,15 @@ function txtErsetzen(kompName, layerName, txtString){
 
 // Funktion alle Eigenschaften eines Objekts durchgehen
 function objProperties(myObject){
-
   for( property in myObject ) { 
-    
     if (getCompByName (myObject[property][0]) instanceof CompItem){
             
-            txtErsetzen(myObject[property][0], myObject[property][2], myObject[property][3]);
+            // Komposition wird geholt
+            var myComp = getCompByName (myObject[property][0]);
+            
+                if(myObject[property][1] == "txt"){
+                    txtErsetzen(myComp, myObject[property][2], myObject[property][3]);
+                }
             
             }else{
             

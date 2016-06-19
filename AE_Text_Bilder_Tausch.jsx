@@ -1,11 +1,11 @@
 ﻿{
-var compFuerInhaltTausch = null;
+
 var daten = new Object();
 
 // Object 
 // Name der Eigenschaft wird genutzt um die entsprechende Komposition zu finden und zu übergeben
-// Die Eigenschaft enthält ein Array [0] = txt / img; [1] = Layername; [2] = Inhalt (Text oder Name des Footageitems)
-daten = {Item1: ["Komp1", "txt","Textlayer 1", "Das ist der Inhalt für Zeile 1"], Item2: ["Komp1","txt","Textlayer 2", "Das ist der Inhalt für Zeile 2"]}
+// Die Eigenschaft enthält ein Array [0] = Kompositionsname; [1]= txt / img; [1] = Layername; [2] = Inhalt (Text oder Name des Footageitems)
+daten = {Item1: ["Komp1", "txt","Textlayer 1", "Das ist der Inhalt für Zeile 1"], Item2: ["Komp1","img","Flagge", "Australien.png"]}
 
 // Funktion getCompByName
 // Funktion um eine Composition mit einem bestimmten Namen zu finden und als Objekt zurückzugeben
@@ -47,6 +47,15 @@ function txtErsetzen(kompName, layerName, txtString){
     textProp.setValue(textDocument);
 }
 
+// Funktion imageErsetzen
+function imageErsetzen(kompName, layerName, txtString){
+
+    var layer = myComp.layer(layerName);
+    var source = getItemByName(txtString);
+    layer.replaceSource(source, true);
+
+}
+
 // Funktion alle Eigenschaften eines Objekts durchgehen
 function objProperties(myObject){
   for( property in myObject ) { 
@@ -59,6 +68,9 @@ function objProperties(myObject){
                     txtErsetzen(myComp, myObject[property][2], myObject[property][3]);
                 }
             
+                if(myObject[property][1] == "img"){
+                   imageErsetzen(myComp, myObject[property][2], myObject[property][3]);
+                }         
             }else{
             
             throw new Error();  //or something else

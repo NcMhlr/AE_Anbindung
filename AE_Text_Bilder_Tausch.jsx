@@ -1,4 +1,5 @@
-﻿{
+﻿// Test für Github 
+{
 var compFuerInhaltTausch = null;
 var daten = new Object();
 

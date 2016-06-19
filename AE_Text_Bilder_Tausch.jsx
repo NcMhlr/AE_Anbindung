@@ -1,11 +1,55 @@
-﻿{
-
+﻿(function importOlympiaErgebnisse()
+{
+    
+var scriptName = "Import Ergebnisse";
 var daten = new Object();
+var txtExtension = ".txt";	
+var txtExtensionFilter;
+var fileToImport;
+
+	// filter function (for Mac) to show only TXT files in the file dialog box
+	function isTXTFile(fileObj)
+	{
+		var istxt = false;
+		
+		if (fileObj) {
+			if ((fileObj instanceof File) && fileObj.exists) {
+				istxt = fileObj.name.indexOf(txtExtension, fileObj.name.length - txtExtension.length) !== -1;
+			} else if ((fileObj instanceof Folder) && fileObj.exists) {
+				istxt = true;	// allow folders to be selectable so that you can navigate into them
+			}
+		}
+		
+		return istxt;
+	}
+	
+
+
+function openTextFile(){
+        
+        txtExtensionFilter = ($.os.indexOf("Windows") !== -1) ? "*"+txtExtension : isTXTFile;
+        fileToImport = File.openDialog("Select a Textfile", txtExtensionFilter, true);
+        //alert(fileToImport);
+        //alert(!fileToImport.exists);
+        if (!fileToImport || fileToImport.exists) {
+            return;
+        }
+        var txtFile = new File(fileToImport);
+        txtFile.open("r");
+        daten = (eval(txtFile.read()));
+
+}
+
+
 
 // Object 
 // Name der Eigenschaft wird genutzt um die entsprechende Komposition zu finden und zu übergeben
 // Die Eigenschaft enthält ein Array [0] = Kompositionsname; [1]= txt / img; [1] = Layername; [2] = Inhalt (Text oder Name des Footageitems)
+
+
+/* Testdaten werden in Datei ausgelagert
 daten = {
+    Schlagzeile01:["Schlagzeile01","txt","Schlagzeile01","Gold für Name 1 und Name 2"],
     Sportart1:["tabelle01","txt","Sportart","Sportart 1"],
     Einheit1:["tabelle01","txt","Einheit","Meter"],
     
@@ -49,7 +93,7 @@ daten = {
     Item31: ["tabelle01_zeile08", "txt", "Punkte", "99"],
     Item32: ["tabelle01_zeile08","img","Flagge", "Äthiopien.png"],
     
-    };
+    };*/
 
 // Funktion getCompByName
 // Funktion um eine Composition mit einem bestimmten Namen zu finden und als Objekt zurückzugeben
@@ -112,20 +156,22 @@ function objProperties(myObject){
             
                 if(myObject[property][1] == "txt"){
                     txtErsetzen(myComp, myObject[property][2], myObject[property][3]);
-                }
+                };
             
                 if(myObject[property][1] == "img"){
                    imageErsetzen(myComp, myObject[property][2], myObject[property][3]);
-                }         
+                } ;
+            
             }else{
             
             throw new Error();  //or something else
         }
   }
 }
-
-objProperties (daten)
+openTextFile ();
+objProperties (daten);
 }
+)();
 
 
 

@@ -162,17 +162,12 @@ function objProperties(myObject){
                     txtErsetzen(myComp, myObject[property][2], myObject[property][3]);
                 };
             
-                if(myObject[property][1] == "img"){
+                if(myObject[property][1] ü== "img"){
                    imageErsetzen(myComp, myObject[property][2], myObject[property][3]);
                 } ;
             
             }else{
-            alert (myObject[property][0] + " existiert nicht!", "Achtung!");
-
-            
-            
-            //
-            //throw new Error(); //or something else
+            alert (myObject[property][0] + " existiert im Projekz nicht!", "Achtung!");
         }
   }
 }

@@ -132,9 +132,8 @@ function txtErsetzen(kompName, layerName, txtString){
             var textDocument = textProp.value;
             textDocument.text = txtString;
             textProp.setValue(textDocument);
-      return;
-    }
-
+        }
+return;
 
 }
 
@@ -145,6 +144,7 @@ try{
     var source = getItemByName(txtString);
     layer.replaceSource(source, true);}
 catch(e){
+
   };
 
 }
@@ -156,7 +156,7 @@ function objProperties(myObject){
             
             // Komposition wird geholt
             var myComp = getCompByName (myObject[property][0]);
-            
+            //alert(myComp.name);
                 if(myObject[property][1] == "txt"){
                     txtErsetzen(myComp, myObject[property][2], myObject[property][3]);
                 };
@@ -166,8 +166,12 @@ function objProperties(myObject){
                 } ;
             
             }else{
+            alert (myObject[property][0] + " existiert nicht!", "Achtung!");
+
             
-            throw new Error();  //or something else
+            
+            //
+            //throw new Error(); //or something else
         }
   }
 }
@@ -176,6 +180,7 @@ function objProperties(myObject){
 function programmAblauf(){
     openTextFile ();
     objProperties (daten);
+    alert("Daten übergeben");
     }
 
 programmAblauf ();

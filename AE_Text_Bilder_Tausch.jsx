@@ -168,8 +168,14 @@ function objProperties(myObject){
         }
   }
 }
-openTextFile ();
-objProperties (daten);
+
+// Funktion Gesamtablauf
+function programmAblauf(){
+    openTextFile ();
+    objProperties (daten);
+    }
+
+programmAblauf ();
 }
 )();
 

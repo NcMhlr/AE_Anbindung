@@ -142,6 +142,7 @@ function imageErsetzen(kompName, layerName, txtString){
 try{
     var layer = myComp.layer(layerName);
     var source = getItemByName(txtString);
+    if(!source){var source = getItemByName("Leer.png"); alert(txtString + " konnte im Projekt nicht gefunden werden!");};
     layer.replaceSource(source, true);}
 catch(e){
 

@@ -23,8 +23,8 @@ var fileToImport;
 		return istxt;
 	}
 	
-
-
+// Textdatei öffnen
+//
 function openTextFile(){
         
         txtExtensionFilter = ($.os.indexOf("Windows") !== -1) ? "*"+txtExtension : isTXTFile;
@@ -39,8 +39,6 @@ function openTextFile(){
         daten = (eval(txtFile.read()));
 
 }
-
-
 
 // Object 
 // Name der Eigenschaft wird genutzt um die entsprechende Komposition zu finden und zu übergeben
@@ -95,6 +93,7 @@ daten = {
     
     };*/
 
+
 // Funktion getCompByName
 // Funktion um eine Composition mit einem bestimmten Namen zu finden und als Objekt zurückzugeben
 // Name der Composition als String in die Funktion übergeben
@@ -128,11 +127,15 @@ function getItemByName(txtItemName){
 function txtErsetzen(kompName, layerName, txtString){
     
     var layer = kompName.layer(layerName); 
-    var textProp = layer.property("Source Text");
-    var textDocument = textProp.value;
-    
-    textDocument.text = txtString;
-    textProp.setValue(textDocument);
+        if ((layer instanceof TextLayer) && layer.name == layerName){
+            var textProp = layer.property("Source Text");
+            var textDocument = textProp.value;
+            textDocument.text = txtString;
+            textProp.setValue(textDocument);
+      return;
+    }
+
+
 }
 
 // Funktion imageErsetzen

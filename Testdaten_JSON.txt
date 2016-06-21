@@ -1,0 +1,3 @@
+{"Item_01" : ["Komp 1", "txt","Layer1", "ÄÜÖß"],
+"Item_02" : ["Komp 1", "txt","Layer2", "Text zum ersetzen"],
+"Item_03" : ["Komp 2", "img","Flagge", "Deutschland.png"]}

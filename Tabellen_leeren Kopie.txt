@@ -1,1 +1,0 @@
-'{"Item_1" : ["Komp 1“, “txt", "Layer1“, “1“],"Item_2" : ["Komp 2“,“img“,“Flagge“,“Deutschland.png“], "Item_4" : ["Komp 1“,“txt","Layer2“,“2“]}'
